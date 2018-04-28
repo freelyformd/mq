@@ -1,0 +1,14 @@
+{
+  "name": "@freelyformd/mq",
+  "version": "1.0.0",
+  "description": "A sweet syntax wrapper around amqplib",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ernest Okot",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.2"
+  }
+}
