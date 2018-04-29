@@ -10,19 +10,23 @@ class TopicConsumer {
     this.connection = null;
     this.channel = null;
     this.exchange = exchange;
+    this.exchangeOptions = {};
     this.queue = queue;
+    this.queueOptions = {};
     this.topics = [];
     this.topicFunctions = {};
   }
 
-  setExchange(ex) {
+  setExchange(ex, options = {durable: true}) {
     this.exchange = ex;
+    this.exchangeOptions = options;
 
     return this;
   }
 
-  setQueue(q = '') {
+  setQueue(q = '', options = {exclusive: true}) {
     this.queue = q;
+    this.queueOptions = options;
 
     return this;
   }
@@ -39,9 +43,9 @@ class TopicConsumer {
 
     this.channel = await this.connection.createChannel();
 
-    await this.channel.assertExchange(this.exchange, 'topic', {durable: true});
+    await this.channel.assertExchange(this.exchange, 'topic', this.exchangeOptions);
 
-    const q = await this.channel.assertQueue(this.queue, {exclusive: true});
+    const q = await this.channel.assertQueue(this.queue, this.queueOptions);
 
     const uniqueTopics = [...new Set(this.topics)];
 
@@ -58,7 +62,7 @@ class TopicConsumer {
         const regex = new RegExp('^' + regexString + '$');
 
         return topic.match(regex);
-      })
+      });
 
       const callback = this.topicFunctions[key];
 
