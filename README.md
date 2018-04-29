@@ -1,13 +1,13 @@
-# @freelyformd/mq
+# SugarMQ
 
 A sweet syntax wrapper around amqplib. We use this with rabbitmq
 
 ## Installation
 
 ```
-npm install @freelyformd/mq --save
+npm install sugarmq --save
 # or
-yarn add @freelyformd/mq
+yarn add sugarmq
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ yarn add @freelyformd/mq
 ### Creating a topic consumer
 
 ```js
-const {TopicConsumer} = require('@freelyformd/mq');
+const {TopicConsumer} = require('sugarmq');
 
 TopicConsumer.create()
   .setExchange('exchange')
@@ -29,7 +29,7 @@ TopicConsumer.create()
 ### Creating a topic publisher
 
 ```js
-const {TopicProducer} = require('@freelyformd/mq');
+const {TopicProducer} = require('sugarmq');
 
 TopicProducer.create()
   .setExchange('exchange')
