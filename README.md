@@ -2,9 +2,7 @@
 
 A sweet syntax wrapper around amqplib. We use this with rabbitmq
 
-## Usage
-
-### Installation
+## Installation
 
 ```
 npm install @freelyformd/mq 
@@ -12,29 +10,32 @@ npm install @freelyformd/mq
 yarn @freelyformd/mq
 ```
 
-### A rabbitmq topic consumer
+## Usage
+
+### Creating a topic consumer
 
 ```js
 const {TopicConsumer} = require('@freelyformd/mq');
 
-
-TopicConsumer
-  .create('exchange', 'q')
+TopicConsumer.create()
+  .setExchange('exchange')
+  .setQueue('q')
   .subscribe('lazy.#', console.log) 
   .subscribe('*.*.rabbit', console.log)
   .start('amqp://localhost');
 
 ```
 
-### A rabbitmq topic publisher
+### Creating a topic publisher
 
 ```js
 const {TopicProducer} = require('@freelyformd/mq');
 
-const producer = TopicProducer.create('exchange', 'q').start();
-
-producer.then(producer => {
-  producer.publish("quick.orange.rabbit", "the quick orange rabbit");
-  setTimeout(() => producer.stop(), 500);
-});
+TopicProducer.create()
+  .setExchange('exchange')
+  .start('amqp://localhost')
+  .then(producer => {
+    producer.publish("quick.orange.rabbit", "the quick orange rabbit");
+    setTimeout(() => producer.stop(), 500);
+  });
 ```
