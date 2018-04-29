@@ -5,9 +5,9 @@ A sweet syntax wrapper around amqplib. We use this with rabbitmq
 ## Installation
 
 ```
-npm install @freelyformd/mq 
+npm install @freelyformd/mq --save
 # or
-yarn @freelyformd/mq
+yarn add @freelyformd/mq
 ```
 
 ## Usage
