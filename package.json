@@ -5,6 +5,9 @@
   "author": "Ernest Okot",
   "license": "ISC",
   "main": "src/topic/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
