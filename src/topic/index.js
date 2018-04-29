@@ -4,4 +4,4 @@ const TopicProducer = require('./producer');
 module.exports = {
   TopicProducer,
   TopicConsumer,
-}
+};

@@ -50,7 +50,6 @@ class TopicConsumer {
     const uniqueTopics = [...new Set(this.topics)];
 
     uniqueTopics.forEach(topic => {
-      console.log("[*] Binding `%s` to `%s` from `%s`", this.queue, topic, this.exchange);
       this.channel.bindQueue(q.queue, this.exchange, topic);
     });
 
@@ -75,12 +74,10 @@ class TopicConsumer {
         await callback(JSON.parse(msg.content.toString()), topic);
         this.channel.ack(msg);
       } catch (error) {
-        console.log(error);
+        // Catch error
       }
 
     }, { noAck: false, });
-
-    console.log("[*] Waiting for `%s`. To exit press CTRL+C", this.exchange);
 
     return this;
   }
