@@ -4,7 +4,7 @@
   "description": "A sweet syntax wrapper around amqplib",
   "author": "Ernest Okot",
   "license": "ISC",
-  "main": "src/topic/index.js",
+  "main": "lib/topic/index.js",
   "publishConfig": {
     "access": "public"
   },
