@@ -4,7 +4,7 @@ A sweet syntax wrapper around amqplib. We use this with rabbitmq
 
 ## Usage
 
-## Installation
+### Installation
 
 ```
 npm install @freelyformd/mq 
@@ -20,7 +20,7 @@ const {TopicConsumer} = require('@freelyformd/mq');
 
 TopicConsumer
   .create('exchange', 'q')
-  .subscribe('lazy.#', console.log)
+  .subscribe('lazy.#', console.log) 
   .subscribe('*.*.rabbit', console.log)
   .start('amqp://localhost');
 
@@ -38,6 +38,3 @@ producer.then(producer => {
   setTimeout(() => producer.stop(), 500);
 });
 ```
-
-
-> Still in active development!
