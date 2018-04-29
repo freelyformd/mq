@@ -1,9 +1,9 @@
 {
-  "name": "@freelyformd/mq",
+  "name": "sugarmq",
   "version": "1.0.0",
   "description": "A sweet syntax wrapper around amqplib",
   "author": "Ernest Okot",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/topic/index.js",
   "publishConfig": {
     "access": "public"
@@ -36,5 +36,22 @@
     "husky": "^0.14.3",
     "nsp": "^3.2.1",
     "semantic-release": "^15.1.7"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freelyformd/mq.git"
+  },
+  "keywords": [
+    "rabbitmq",
+    "nodejs",
+    "amqplib"
+  ],
+  "bugs": {
+    "url": "https://github.com/freelyformd/mq/issues"
+  },
+  "homepage": "https://github.com/freelyformd/mq#readme"
 }
