@@ -14,3 +14,7 @@ deploy:
   skip_cleanup: true
   script:
     - npx semantic-release
+  on:
+    tags: false
+    branch: master
+    repo: freelyformd/mq
