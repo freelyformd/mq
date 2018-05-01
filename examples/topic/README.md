@@ -52,26 +52,21 @@ docker run -d --hostname rabbitmq -p 5672:5672 -p 8888:15672 --name rabbit rabbi
 - Your first tab should look like this
 
 ```
-$ ./consume.js "X" "Q1" "*.orange.*"             
-[*] Binding `Q1` to `*.orange.*` from `X`
-[*] Waiting for `X`. To exit press CTRL+C
-the quick orange rabbit quick.orange.rabbit
-the lazy orange elephant lazy.orange.elephant
-the quick orange rabbit quick.orange.rabbit
-the quick orange fox quick.orange.fox
+$ ./consume.js "X" "Q1" "*.orange.*"
+quick.orange.rabbit the quick orange rabbit 
+lazy.orange.elephant the lazy orange elephant 
+quick.orange.rabbit the quick orange rabbit 
+quick.orange.fox the quick orange fox 
 
 ```
 
 - And the second...
 ```
-$ ./publish.js "X" "Q2" "*.*.rabbit" "lazy.#"     
-[*] Binding `Q2` to `*.*.rabbit` from `X`
-[*] Binding `Q2` to `lazy.#` from `X`
-[*] Waiting for `X`. To exit press CTRL+C
-the quick orange rabbit quick.orange.rabbit
-the lazy orange elephant lazy.orange.elephant
-the quick orange rabbit quick.orange.rabbit
-the lazy brown fox lazy.brown.fox
-the lazy pink rabbit lazy.pink.rabbit
-the lazy orange male rabbit lazy.orange.male.rabbit
+$ ./publish.js "X" "Q2" "*.*.rabbit" "lazy.#"
+quick.orange.rabbit the quick orange rabbit
+lazy.orange.elephant the lazy orange elephant
+quick.orange.rabbit the quick orange rabbit
+lazy.brown.fox the lazy brown fox
+lazy.pink.rabbit the lazy pink rabbit
+lazy.orange.male.rabbit the lazy orange male rabbit
 ```
