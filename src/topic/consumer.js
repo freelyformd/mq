@@ -71,7 +71,7 @@ class TopicConsumer {
       }
 
       try {
-        await callback(JSON.parse(msg.content.toString()), topic);
+        await callback(topic, JSON.parse(msg.content.toString()));
         this.channel.ack(msg);
       } catch (error) {
         // Catch error
