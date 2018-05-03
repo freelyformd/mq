@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": [ "es2015" ],
+    "downlevelIteration": true,
+    "outDir": "./lib",
+    "allowJs": true,
+    "target": "es5"
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
