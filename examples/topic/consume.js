@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const TopicConsumer = require('../../src/topic/consumer');
+const TopicConsumer = require('../../lib');
 
 const [ex, q, ...topics] = process.argv.slice(2);
 
