@@ -4,7 +4,7 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![GitHub license](https://img.shields.io/github/license/freelyformd/mq.svg)](https://github.com/freelyformd/mq)
 
-A sweet syntax wrapper around amqplib. We use this with rabbitmq
+An opinionated expressive wrapper around amqplib. This library aims to make it simpler to build event driven microservices that use RabbitMQ as a messaging broker.
 
 ## Installation
 
