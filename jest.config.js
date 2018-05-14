@@ -14,4 +14,10 @@ module.exports = {
     "json",
     "node"
   ],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/*.{ts,js}",
+    "!**/node_modules/**",
+    "!**/vendor/**"
+  ]
 };
