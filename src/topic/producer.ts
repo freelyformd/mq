@@ -1,4 +1,5 @@
 import {Channel, connect, Connection, Options} from 'amqplib';
+import log from '../utils/logger';
 
 class TopicProducer {
   public static EXCHANGE_TYPE = 'topic';
@@ -24,17 +25,16 @@ class TopicProducer {
   public async start(url: string) {
     if (!this.connection) {
       this.connection = await connect(url);
+      log('connection.open', url);
     }
 
     this.channel = await this.connection.createChannel();
+    log('channel.create', this.exchange);
 
-    await this.channel.assertExchange(
-      this.exchange,
-      TopicProducer.EXCHANGE_TYPE,
-      {
-        durable: true,
-      },
-    );
+    await this.channel.assertExchange(this.exchange, TopicProducer.EXCHANGE_TYPE, {
+      durable: true,
+    });
+    log('exchange.assert', this.exchange);
 
     return this;
   }
@@ -42,10 +42,12 @@ class TopicProducer {
   public publish(topic, data) {
     const content = new Buffer(JSON.stringify(data));
     this.channel.publish(this.exchange, topic, content);
+    log('channel.publish', topic);
   }
 
   public async stop() {
-    return await this.connection.close();
+    await this.connection.close();
+    log('connection.close');
   }
 
 }

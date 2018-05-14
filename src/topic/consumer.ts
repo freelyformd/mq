@@ -1,4 +1,5 @@
-import {Channel, connect, Connection, Options} from 'amqplib';
+import {Channel, connect, Connection, Message, Options} from 'amqplib';
+import log from '../utils/logger';
 
 class TopicConsumer {
 
@@ -44,25 +45,50 @@ class TopicConsumer {
     return this;
   }
 
-  public async start(amqpUrl: string) {
-    this.connection = await connect(amqpUrl);
+  public async start(url: string) {
+    if (!this.connection) {
+      this.connection = await connect(url);
+      log('connection.open', url);
+    }
 
     this.channel = await this.connection.createChannel();
 
     await this.channel.assertExchange(this.exchange, 'topic', this.exchangeOptions);
+    log('exchange.assert', this.exchange);
 
     const q = await this.channel.assertQueue(this.queue, this.queueOptions);
+    log('queue.assert', this.queue);
 
     const uniqueTopics = [...new Set(this.topics)];
 
     await Promise.all(
-      uniqueTopics.map(async (topic) =>
-        await this.channel.bindQueue(q.queue, this.exchange, topic),
-      ),
+      uniqueTopics.map(async (topic) => {
+        await this.channel.bindQueue(q.queue, this.exchange, topic);
+        log('channel.bind',  `"${topic}" topic to "${q.queue}" queue on "${this.exchange}" exchange`);
+      }),
     );
 
-    return this.channel.consume(q.queue, async (msg) => {
+    return await this.consume(q);
+  }
+
+  public stop() {
+    this.connection.close();
+    log('connection.close');
+  }
+
+  public subscribers(topic) {
+    return Object.keys(this.topicCallbacks)
+      .filter((topicGlob) => {
+        const regexString = topicGlob.replace(/\*/g, '[^.]+').replace(/#/g, '.*');
+        return topic.match('^' + regexString + '$');
+      });
+  }
+
+  private async consume(q) {
+    return this.channel.consume(q.queue, async (msg: Message) => {
       const topic = msg.fields.routingKey;
+      const time = Date.now();
+      log('channel.message', `${topic}:${time}`);
 
       const [key] = this.subscribers(topic);
 
@@ -74,25 +100,16 @@ class TopicConsumer {
       }
 
       try {
-        await callback(topic, JSON.parse(msg.content.toString()));
+        const content = JSON.parse(msg.content.toString());
+        await callback(topic, content);
         this.channel.ack(msg);
+        log('channel.ack', `${topic}:${time}`);
       } catch (error) {
         this.channel.nack(msg);
+        log('channel.nack', `${topic}:${time}`);
       }
 
     }, {noAck: false});
-  }
-
-  public stop() {
-    this.connection.close();
-  }
-
-  public subscribers(topic) {
-    return Object.keys(this.topicCallbacks)
-      .filter((topicGlob) => {
-        const regexString = topicGlob.replace(/\*/g, '[^.]+').replace(/#/g, '.*');
-        return topic.match('^' + regexString + '$');
-      });
   }
 
 }
