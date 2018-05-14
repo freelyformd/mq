@@ -1,4 +1,4 @@
-import debug from 'debug';
+import * as debug from 'debug';
 
 const log = debug('sugarmq');
 
