@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {TopicProducer} = require('../../lib');
+const {TopicProducer} = require('../../lib/topic');
 
 const [ex, topic, message] = process.argv.slice(2);
 
