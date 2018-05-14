@@ -1,10 +1,10 @@
 # SugarMQ
 
-[![Build Status](https://travis-ci.org/freelyformd/mq.svg?branch=master)]()
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)]()
-[![npm version](https://badge.fury.io/js/sugarmq.svg)]()
-[![npm downloads](https://img.shields.io/npm/dt/sugarmq.svg)]()
-
+[![Build Status](https://travis-ci.org/freelyformd/mq.svg?branch=master)](https://travis-ci.org/freelyformd/mq)
+[![Coverage Status](https://coveralls.io/repos/github/freelyformd/mq/badge.svg?branch=master)](https://coveralls.io/github/freelyformd/mq?branch=master)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![npm version](https://badge.fury.io/js/sugarmq.svg)](https://www.npmjs.com/package/sugarmq)
+[![npm downloads](https://img.shields.io/npm/dt/sugarmq.svg)](https://www.npmjs.com/package/sugarmq)
 
 An opinionated declarative wrapper around the node amqplib. We use this library to make it simpler for us to build event driven microservices that use RabbitMQ as a message broker.
 
