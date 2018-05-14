@@ -1,4 +1,4 @@
-import TopicConsumer from './consumer';
+import {TopicConsumer} from './';
 
 describe('Consumer', () => {
 
