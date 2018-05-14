@@ -1,7 +1,5 @@
-import TopicConsumer from './consumer';
-import TopicProducer from './producer';
+import Consumer from './consumer';
+import Producer from './producer';
 
-module.exports = {
-    TopicConsumer,
-    TopicProducer,
-};
+export const TopicConsumer = Consumer;
+export const TopicProducer = Producer;
