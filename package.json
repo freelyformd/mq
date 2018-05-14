@@ -17,7 +17,7 @@
     "compile": "tsc",
     "commit": "git add . && git-cz",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "lint": "eslint src",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "release": "semantic-release",
     "test": "jest"
   },
